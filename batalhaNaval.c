@@ -1,6 +1,7 @@
 #include <stdio.h>
 
 // inicio do desafio batalha naval nivel novato
+// nivel aventureito e novas implementações a partir da linha (65)
 
 int main() {
     
@@ -61,6 +62,69 @@ int main() {
         tabuleiro[linhaV + i][colunaV] = navioVertical[i];
     }
 
+    // ================= NOVAS IMPLEMENTACOES =================
+
+    // coordenadas iniciais do navio diagonal principal
+    // define a posição inicial do navio diagonal que cresce para baixo e para a direita
+
+    int linhaD1 = 0;                                     
+    int colunaD1 = 0;                                   
+
+    // validando limite do navio diagonal principal
+    // garante que o navio diagonal não ultrapasse os limites do tabuleiro 10x10
+
+    if (linhaD1 + 3 > 10 || colunaD1 + 3 > 10) {         
+        printf("Erro: Navio diagonal fora dos limites do tabuleiro.\n");
+        return 0;
+    }
+
+    // verificando sobreposição do navio diagonal principal
+    // verifica se alguma posição diagonal já está ocupada por outro navio
+
+    for (int i = 0; i < 3; i++) {                         
+        if (tabuleiro[linhaD1 + i][colunaD1 + i] == 3) {
+            printf("Erro: Sobreposicao no navio diagonal.\n");
+            return 0;
+        }
+    }
+
+    // posicionando o navio diagonal principal
+    // marca no tabuleiro as posições ocupadas pelo navio diagonal principal
+
+    for (int i = 0; i < 3; i++) {                          
+        tabuleiro[linhaD1 + i][colunaD1 + i] = 3;          
+    }
+
+    // coordenadas iniciais do navio diagonal secundaria
+    // define a posição inicial do navio diagonal que cresce para baixo e para a esquerda
+
+    int linhaD2 = 0;                                     
+    int colunaD2 = 9;                                    
+
+    // validando limite do navio diagonal secundaria
+    // garante que o navio diagonal secundário não ultrapasse os limites do tabuleiro
+
+    if (linhaD2 + 3 > 10 || colunaD2 - 2 < 0) {
+        printf("Erro: Navio diagonal fora dos limites do tabuleiro.\n");
+        return 0;
+    }
+
+    // verificando sobreposição do navio diagonal secundaria
+    // verifica se as posições da diagonal secundária estão livres
+
+    for (int i = 0; i < 3; i++) {                           
+        if (tabuleiro[linhaD2 + i][colunaD2 - i] == 3) {    
+            printf("Erro: Sobreposicao no navio diagonal.\n");
+            return 0;
+        }
+    }
+
+    // posicionando o navio diagonal secundaria
+    // marca no tabuleiro as posições ocupadas pelo navio diagonal secundário
+    for (int i = 0; i < 3; i++) {                           
+        tabuleiro[linhaD2 + i][colunaD2 - i] = 3;           
+    }
+
     // programa exibindo o tabuleiro completo com todos os navios e (0) representando a (agua)
 
     printf("\nTABULEIRO BATALHA NAVAL\n\n");
@@ -72,10 +136,6 @@ int main() {
         printf("\n");
     }
 
-    // Nível Aventureiro - Expansão do Tabuleiro e Posicionamento Diagonal
-    // Sugestão: Expanda o tabuleiro para uma matriz 10x10.
-    // Sugestão: Posicione quatro navios no tabuleiro, incluindo dois na diagonal.
-    // Sugestão: Exiba o tabuleiro completo no console, mostrando 0 para posições vazias e 3 para posições ocupadas.
 
     // Nível Mestre - Habilidades Especiais com Matrizes
     // Sugestão: Crie matrizes para representar habilidades especiais como cone, cruz, e octaedro.
